@@ -6,6 +6,8 @@ function Register({navigate}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmpassword, setconfirmPassword] = useState('');
+    const [userName,setuserName] = useState('');
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,7 +16,12 @@ function Register({navigate}) {
             alert('Passwords do not match!');
             return;
         }
+        if (!isUserNameUnique(userName)) {
+            alert("userName already taken");
+            return;
+        }
         signUpWithEmailAndPassword(email, password).then(() => {
+            assignUserName(userName);
             alert('User registered successfully!');
             navigate(Home)
         }
@@ -28,6 +35,15 @@ function Register({navigate}) {
         <div>
             <form onSubmit={handleSubmit}>
             <h2>Register</h2>
+            <div>
+                <label>User Name</label>
+                <input
+                    type="text"
+                    value={userName}
+                    onChange={(e) => setuserName(e.target.value)}
+                    required
+                />
+            </div>
             <div>
                 <label>Email</label>
                 <input

@@ -1,11 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, setAnalyticsCollectionEnabled } from "firebase/analytics";
 import { signOut } from "firebase/auth";
-import { useAuth } from "./AuthContext";
+// import { useAuth } from "./AuthContext";
+import { ref,get, getDatabase, onValue } from "firebase/database";
 import { getAuth, signInWithEmailAndPassword,createUserWithEmailAndPassword , sendPasswordResetEmail } from "firebase/auth";
 import { getFirestore,setDoc,getDoc,doc } from "firebase/firestore";
-import { Navigate } from "react-router-dom";
+import { data, Navigate } from "react-router-dom";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,8 +28,48 @@ export var isLoggedin = false;
 
 export const auth = getAuth(app);
 const db = getFirestore(app);
+const database = getDatabase(app);
 export var accessToken = null;
 
+//chatting
+
+//get chats
+export const getchatIDs = (updateChats) => {
+  const chatsIDref = ref(database, 'users/'+auth.currentUser.uid+'/chats');
+  onValue(chatsIDref, (snapshot) => {
+
+    updateChats(snapshot.val());
+    console.log(snapshot.val());
+  });
+  // return data;
+  // return chats;
+};
+
+export const getChat = (ChatID,updateChat) =>{
+  const chatRef = ref(database,ChatID);
+  onValue(chatRef,(snapshot)=>{
+    updateChat(snapshot.val());
+  })
+}
+
+export const isUserNameUnique  = async (userName) =>{
+  const docRef = doc(db,"userNames",);
+  const snapshot = await getDoc(docRef);
+  if (snapshot.exists() && snapshot.data().userName != null) {
+    return false;
+  }
+
+  if (snapshot.exists() && snapshot.data()) {
+    await  setDoc(docRef, {userName:null});
+  }
+
+  return true;
+}
+
+export const assignUserName = async (userName) => {
+  const docRef = doc(db,"userNames",);
+  await setDoc(docRef,{userName:auth.currentUser.uid});
+}
 
 //refres Token
 export const storeRefreshToken = async (refreshToken=null,accessToken) => {
@@ -59,9 +100,6 @@ export const removeRefreshToken = async () => {
   const docRef = doc(db, uid,"DriveToken");
   await setDoc(docRef, {refreshToken: null,accessToken:null}); 
 }
-
-
-
 
 //Sign up with email and password
 export const signUpWithEmailAndPassword = async (email, password) => {

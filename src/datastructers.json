@@ -1,0 +1,43 @@
+{
+
+    "chat":{
+        "ChatID": "1",
+        "ChatName": "Chat 1",
+        "ChatMembers": [
+            {
+                "UserID": "1",
+                "UserName": "User 1"
+            },
+            {
+                "UserID": "2",
+                "UserName": "User 2"
+            }
+        ],
+        "ChatMessages": [
+            {
+                "MessageID": "1",
+                "MessageText": "Hello",
+                "MessageTime": "2022-01-01 12:00:00",
+                "MessageSender": {
+                    "UserID": "1",
+                    "UserName": "User 1"
+                }
+            },
+            {
+                "MessageID": "2",
+                "MessageText": "Hi",
+                "MessageTime": "2022-01-01 12:01:00",
+                "MessageSender": {
+                    "UserID": "2",
+                    "UserName": "User 2"
+                }
+            }
+        ]
+    },
+
+
+    "userNames":{
+        "UID1":"kkek",
+        "UID2":"PRK"
+    }
+}
