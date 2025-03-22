@@ -40,8 +40,6 @@ export default class Navigator extends React.Component {
                     </div>
                 : 
                 <div>
-                    <button onClick={()=>this.navigate(Login)}>Login</button>
-                    <button onClick={()=>this.navigate(Register)}>Register</button>
                 </div>
                     
             }

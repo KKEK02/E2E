@@ -25,7 +25,7 @@ export default function Chat() {
         return (
 
             <div>
-                ChatList
+                {chatIDs}
             </div>
 
         //    chatIDs.map((chatID, index) => (

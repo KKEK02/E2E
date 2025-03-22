@@ -53,11 +53,11 @@ export const getChat = (ChatID,updateChat) =>{
 }
 
 export const isUserNameUnique  = async (userName) =>{
-  const docRef = doc(db,"userNames",);
+  const docRef = ref(database,"userNames");
   const snapshot = await getDoc(docRef);
-  if (snapshot.exists() && snapshot.data().userName != null) {
-    return false;
-  }
+  console.log(snapshot.exists());
+  return !snapshot.exists();
+
 
   if (snapshot.exists() && snapshot.data()) {
     await  setDoc(docRef, {userName:null});
@@ -67,8 +67,10 @@ export const isUserNameUnique  = async (userName) =>{
 }
 
 export const assignUserName = async (userName) => {
-  const docRef = doc(db,"userNames",);
+  const docRef = doc(db,"users","userNames");
   await setDoc(docRef,{userName:auth.currentUser.uid});
+  // await setDoc(docRef,{userName:userName});
+  console.log("userName assigned");
 }
 
 //refres Token
