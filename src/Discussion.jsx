@@ -5,7 +5,7 @@ import "./Discussion.css"
 const Discussion = () => {
     return (
         <div id="webcrumbs">
-            <div className="w-[1200px] bg-white font-sans">
+            {/* <div className="w-[1200px] bg-white font-sans"> */}
                 <header className="bg-primary-600 text-white py-6 px-8 shadow-lg">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center space-x-2">
@@ -508,7 +508,7 @@ const Discussion = () => {
                         </div>
                     </aside>
                 </main>
-            </div>
+            {/* </div> */}
         </div>
     )
 }
