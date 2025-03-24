@@ -6,6 +6,7 @@ import { isLoggedin } from './Firebase';
 import Resource from './Resource.js';
 import Logout from './Logout';
 import Chat from './chat';
+import Discussion from './Discussion';
 export default class Navigator extends React.Component {
     constructor(parameters) {
         super();
@@ -36,6 +37,7 @@ export default class Navigator extends React.Component {
                         <button onClick={()=>this.navigate(Resource)}>Resource</button>
                         <button onClick={()=>this.navigate(Chat)}>Chat</button>
                         <button onClick={()=>this.navigate(Logout)}>Logout</button>
+                        <button onClick={()=>this.navigate(Discussion)}>Discussion</button>
 
                     </div>
                 : 

@@ -22,6 +22,8 @@ const firebaseConfig = {
   measurementId: "G-NGLFF0LJ0L"
 };
 
+
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export var isLoggedin = false;
@@ -30,6 +32,24 @@ export const auth = getAuth(app);
 const db = getFirestore(app);
 const database = getDatabase(app);
 export var accessToken = null;
+
+
+
+//Resource
+async function checkStorageUsage(userId) {
+  const filesRef = db.collection("files").where("uploadedBy", "==", userId);
+  const snapshot = await filesRef.get();
+  
+  let totalSize = 0;
+  snapshot.forEach(doc => { totalSize += doc.data().fileSize; });
+
+  return totalSize;  // Returns used storage in bytes
+}
+
+
+
+
+
 
 //chatting
 
