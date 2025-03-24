@@ -117,7 +117,7 @@ export function Login({ navigate }) {
                             </div>
 
                             <div className="mt-6 grid grid-cols-1 gap-3">
-                                <button onClick={alert('underimplementation')} className="flex justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white hover:bg-gray-50 transition-all duration-200">
+                                <button  className="flex justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white hover:bg-gray-50 transition-all duration-200">
                                     <i className="fa-brands fa-google text-lg"></i>
                                     
                                                                     
